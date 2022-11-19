@@ -20,7 +20,7 @@
 # Timeout is set to 0 to disable the timeouts of the workers to allow Cloud Run to handle instance scaling.
 # CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 --timeout 0 main:app
 
-FROM python:3.9
+FROM python:3.9-slim
 
 ENV PYTHONUNBUFFERED True
 
@@ -28,12 +28,8 @@ ENV APP_HOME /app
 WORKDIR $APP_HOME
 COPY . ./
 
-COPY ./requirements.txt /code/requirements.txt
-
 ENV PORT 8080
 
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-COPY ./app /code/app
-
-CMD exec uvicorn main:app --host 0.0.0.0 --port ${PORT} --workers 1
+CMD exec uvicorn main:app --host 0.0.0.0 --port $PORT --workers 1
