@@ -26,6 +26,8 @@ WORKDIR /code
 
 COPY ./requirements.txt /code/requirements.txt
 
+ENV PORT 8080
+
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
 COPY ./app /code/app

@@ -4,6 +4,7 @@ from typing import Union
 from fastapi import FastAPI
 from pydantic import BaseModel
 
+"""
 import json
 import torch
 
@@ -18,6 +19,7 @@ model = BertForMaskedLM(config)
 state_dict = torch.load(output_model_file)
 model.load_state_dict(state_dict)
 tokenizer = BertTokenizer(output_vocab_file)
+"""
 
 app = FastAPI()
 
@@ -36,7 +38,7 @@ def add_item(bodytxt: str):
     return {"id": objects[len(objects) - 1]["id"], "body": objects[len(objects) - 1]["body"]}
     # return {"id": len(objects), "body": bodytxt}
 """
-
+"""
 @app.get("/predict")
 def give_predict(string: str):
     inputs = tokenizer(string, return_tensors="pt")
@@ -45,4 +47,8 @@ def give_predict(string: str):
     mask_token_index = (inputs.input_ids == tokenizer.mask_token_id)[0].nonzero(as_tuple=True)[0]
     predicted_token_id = logits[0, mask_token_index].argmax(axis=-1)
     return tokenizer.decode(predicted_token_id)
+"""
 
+@app.get("/")
+async def root():
+    return {"message": "Hello World"}
