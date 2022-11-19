@@ -1,10 +1,3 @@
-import firebase_admin
-
-cred_obj = firebase_admin.credentials.Certificate('....path to file')
-default_app = firebase_admin.initialize_app(cred_obj, {
-	'databaseURL':databaseURL
-	})
-
 from re import X
 from typing import Union
 
@@ -16,9 +9,9 @@ import torch
 
 from transformers import BertTokenizer, BertForMaskedLM, BertConfig
 
-output_model_file = "./models/BERTmodel.bin"
-output_config_file = "./models/BERTconfig.bin"
-output_vocab_file = "./models/BERTvocab.bin"
+output_model_file = "../BERTmodel.bin"
+output_config_file = "../BERTconfig.bin"
+output_vocab_file = "../BERTvocab.bin"
 
 config = BertConfig.from_json_file(output_config_file)
 model = BertForMaskedLM(config)
