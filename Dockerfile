@@ -28,8 +28,8 @@ ENV APP_HOME /app
 WORKDIR $APP_HOME
 COPY . ./
 
-ENV PORT 8080
+ENV PORT 1234
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-CMD exec uvicorn main:app --host 0.0.0.0 --port $PORT --workers 1
+CMD exec uvicorn main:app --host 0.0.0.0 --port ${PORT} --workers 1
