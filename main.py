@@ -38,7 +38,7 @@ def add_item(bodytxt: str):
 """
 
 @app.get("/")
-async def give_predict():
+async def root():
     string = "I went to the [MASK] today."
     inputs = tokenizer(string, return_tensors="pt")
     with torch.no_grad():
