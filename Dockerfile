@@ -34,4 +34,4 @@ EXPOSE 8080
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-CMD exec uvicorn main:app --host 127.0.0.1 --port ${PORT} --workers 1
+CMD exec uvicorn main:app --port 0.0.0.0:80:80 --workers 1
